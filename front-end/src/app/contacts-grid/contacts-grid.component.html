@@ -1,0 +1,49 @@
+<section class="container-fluide p-4 bg-light">
+  <h3>Grid View</h3>
+  <p *ngIf="!listContact">No Records to Show</p>
+  
+  <div class="p-2 card-columns" *ngIf="listContact">
+    <div class="card card-primary m-1" *ngFor="let c of listContact">
+      <div class="card-body">
+        <table class="table">
+            <tr>
+              <th>CID</th>
+              <td>{{c.cid|number:'5.0-0'}}</td>
+            </tr>
+            <tr>
+              <th>First Name</th>
+              <td>{{c.firstName|uppercase}}</td>
+            </tr>
+            <tr>
+              <th>Last Name</th>
+              <td>{{c.lastName|uppercase}}</td>
+            </tr>
+            <tr>
+              <th>Mobile</th>
+              <td>{{c.mobile}}</td>
+            </tr>
+            <tr>
+              <th>Mail</th>
+              <td>{{c.mail}}</td>
+            </tr>
+            <tr>
+              <th>Date Of Birth</th>
+              <td>{{c.dateOfBirth}}</td>
+            </tr>
+            <tr>
+              <th>Gender</th>
+              <td>{{c.gender}}</td>
+            </tr>
+            <tr>
+              <th>Group</th>
+              <td>{{c.group }}</td>
+            </tr>
+        </table>
+      </div>
+      <div class="card-footer">
+        <a class="btn btn-sm mr-2 btn-info" routerLink="/edit/{{c.cid}}">Edit</a>
+        <a class="btn btn-sm mr-2 btn-danger" routerLink="/delete/{{c.cid}}">Delete</a>
+      </div>
+    </div>
+  </div>
+</section>

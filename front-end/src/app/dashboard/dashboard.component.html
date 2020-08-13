@@ -1,0 +1,79 @@
+<section class="container-fluide p-4 bg-info">
+  <p *ngIf="!listContact">No Records to Show</p>
+
+  <div class="p-2 card-columns" *ngIf="listContact">
+    <div class="card card-primary m-1 p-2 ">
+      <h5 class="card-title">Gender</h5>
+      <div class="card-body">
+        <table class="table table-stripped ">
+          <tr>
+            <th>Male</th>
+            <td>{{listContact|contactCount:'gender':'Male'}}</td>
+          </tr>
+          <tr>
+            <th>Female</th>
+            <td>{{listContact|contactCount:'gender':'Female'}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="card card-primary m-1 p-2 ">
+      <h5 class="card-title">Group</h5>
+      <div class="card-body">
+        <table class="table table-stripped ">
+          <tr>
+            <th>Family</th>
+            <td>{{listContact|contactCount:'group':'Family'}}</td>
+          </tr>
+          <tr>
+            <th>Friends</th>
+            <td>{{listContact|contactCount:'group':'friends'}}</td>
+          </tr>
+          <tr>
+            <th>Collegues</th>
+            <td>{{listContact|contactCount:'group':'collegues'}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="card card-primary m-1 p-2 ">
+      <h5 class="card-title">Birthday Babies</h5>
+      <div class="card-body">
+        <table class="table table-stripped ">
+          <tr *ngIf="(listContact|BirthdayBabies).length == 0">
+            <th>Today not found Birthday Babies</th>
+          </tr>
+          <tr *ngFor="let c of listContact|BirthdayBabies">
+            <th>{{c.firstName|uppercase}} {{c.lastName|uppercase}}</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <table *ngIf="listPost" class="table table-stripped table-bordered table-hovered">
+    <thead>
+      <tr>
+        <th>userId</th>
+        <th>id</th>
+        <th>title</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of listPost">
+        <td>{{c.userId}}</td>
+        <td>{{c.id}}</td>
+        <td>{{c.title}}</td>
+        <td>
+          <div class="input-group">
+            <div class="input-group-append">
+              <a class="btn btn-sm btn-info" routerLink="/edit/{{c.cid}}">Edit</a>
+              <a class="btn btn-sm btn-danger" routerLink="/delete/{{c.cid}}">Delete</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
